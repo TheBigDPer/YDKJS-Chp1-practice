@@ -7,10 +7,10 @@ var SPENDING_THRESHOLD = 25.00;
 
 var bankAccountBalance = 100.00;
 
-var purchaseAmount
+var purchaseAmount = 0.00;
 
 function calculateTax (amt) {
-amt = amt + TAX_RATE;
+amt = (amt * TAX_RATE) + amt;
 return amt;
 }
 
@@ -18,15 +18,18 @@ function formatAmount (amt) {
 return "$" + amt.toFixed(2);
 }
 
+function printAmount (amt) {
+console.log(amt);
+}
 
-while (bankAccountBalance > 0) {
+
+for (bankAccountBalance; purchaseAmount < bankAccountBalance; bankAccountBalance - purchaseAmount) {
 purchaseAmount = purchaseAmount + PHONE_PRICE;
 if (purchaseAmount < SPENDING_THRESHOLD) {
 purchaseAmount = purchaseAmount + ACCESSORY_PRICE;
 };
+
 purchaseAmount = calculateTax(purchaseAmount);
-bankAccountBalance = bankAccountBalance - purchaseAmount;
-if (bankAccountBalance == 0) {
-return formatAmount(purchaseAmount);
-};
+formatAmount(purchaseAmount);
+printAmount(purchaseAmount);
 }
